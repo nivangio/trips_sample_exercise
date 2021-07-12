@@ -14,7 +14,7 @@ In order for it to work, you will need to have a DB Instance with the correspond
   * Go to the source folder: `cd trips_sample_exercise`
   * Make a dir to mount as volume: `mkdir postgres_volume`
   * Initialize Engine: `sh start_postgres.sh` (**NOTE**: You may need sudo privileges)
-  * Create DB: `psql -U postgres --host localhost -c 'CREATE DATABASE TRIPS;'` (**NOTE**: If you do not edit default engine configurations, password is 'abcd')
+  * Create DB: `psql -U postgres --host localhost -c 'CREATE DATABASE TRIPS;'` (**NOTE**: If you do not edit default engine configurations in the previous step, password is 'abcd')
   * Create Postgis Extension: `psql --host localhost -d trips --user postgres -c 'CREATE EXTENSION postgis';`
   * Create Table: `sh create_table.sh`
 
