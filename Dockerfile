@@ -8,6 +8,7 @@ WORKDIR /home/app
 COPY . .
 RUN pip install -r requirements.txt
 RUN mkdir /home/app/logs
+RUN mkdir /home/app/input_files
 
 ENV PYTHONPATH=/home/app/
 

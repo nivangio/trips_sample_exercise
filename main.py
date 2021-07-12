@@ -11,12 +11,18 @@ base_query = """ insert INTO public."TRIPS"(region,origin_coord,destination_coor
 
 connection = connect(getenv("CONNECTIONSTRING"))
 
+file_path = "/home/app/input_files/" + getenv("FILENAME")
 with connection.cursor() as cur:
-    for i in get_file_by_line(getenv("DATA_URL")):
+    n_elems = 0
+    for i in get_file_by_line(file_path):
 
         try:
             cur.execute(base_query, tuple(i))
+            logger.info("{} inserted succesfully".format(str(i)))
         ##Log registers that cannot be sent
         except Exception as e:
             logger.error("Could not insert {}. Reason: {}".format(str(i), e.args[0]))
-connection.commit()
+        n_elems += 1
+        ### Commit every 1000 entries
+        if n_elems % 1000 == 0:
+            connection.commit()
