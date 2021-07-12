@@ -26,3 +26,4 @@ with connection.cursor() as cur:
         ### Commit every 1000 entries
         if n_elems % 1000 == 0:
             connection.commit()
+            print(str(n_elems) + "lines read")
